@@ -1,0 +1,14 @@
+﻿<Window x:Class="FullScreenOverlay.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FullScreenOverlay" WindowStyle="None" WindowState="Maximized">
+    <Grid>
+        <Image Source="992446758.png" Stretch="UniformToFill"/>
+        <Grid Background="#CC000000">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Welcome to my app!" FontSize="36" FontWeight="Bold" Foreground="White" Margin="0 0 0 20"/>
+                <Button Content="Start" FontSize="24" Foreground="White" Background="#FF4CAF50" Padding="20 10"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
