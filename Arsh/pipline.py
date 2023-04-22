@@ -1,4 +1,5 @@
 import OCRtoText as ott
+import constants as ct
 import promptGenerator as pg
 import wordParser as wp
 import testingDalle as td
@@ -10,7 +11,7 @@ prompt = "native americans"
 screenfile = "historyClass.png"
 
 def imageGeneration (in_prompt):
-  openai.api_key = "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"
+  openai.api_key = ct.OPENAI_API_KEY
   response= openai.Image.create(
     prompt=in_prompt,
     n=1,
