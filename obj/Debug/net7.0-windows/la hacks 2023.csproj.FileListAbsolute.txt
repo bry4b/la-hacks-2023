@@ -1,0 +1,20 @@
+C:\Users\bryan\Documents\projects\la hacks 2023\obj\Debug\net7.0-windows\la hacks 2023.csproj.AssemblyReference.cache
+C:\Users\bryan\Documents\projects\la hacks 2023\obj\Debug\net7.0-windows\la hacks 2023.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bryan\Documents\projects\la hacks 2023\obj\Debug\net7.0-windows\la hacks 2023.AssemblyInfoInputs.cache
+C:\Users\bryan\Documents\projects\la hacks 2023\obj\Debug\net7.0-windows\la hacks 2023.AssemblyInfo.cs
+C:\Users\bryan\Documents\projects\la hacks 2023\obj\Debug\net7.0-windows\la hacks 2023.csproj.CoreCompileInputs.cache
+C:\Users\bryan\Documents\projects\la hacks 2023\bin\Debug\net7.0-windows\la hacks 2023.exe
+C:\Users\bryan\Documents\projects\la hacks 2023\bin\Debug\net7.0-windows\la hacks 2023.deps.json
+C:\Users\bryan\Documents\projects\la hacks 2023\bin\Debug\net7.0-windows\la hacks 2023.runtimeconfig.json
+C:\Users\bryan\Documents\projects\la hacks 2023\bin\Debug\net7.0-windows\la hacks 2023.dll
+C:\Users\bryan\Documents\projects\la hacks 2023\bin\Debug\net7.0-windows\la hacks 2023.pdb
+C:\Users\bryan\Documents\projects\la hacks 2023\obj\Debug\net7.0-windows\MainWindow.baml
+C:\Users\bryan\Documents\projects\la hacks 2023\obj\Debug\net7.0-windows\MainWindow.g.cs
+C:\Users\bryan\Documents\projects\la hacks 2023\obj\Debug\net7.0-windows\App.g.cs
+C:\Users\bryan\Documents\projects\la hacks 2023\obj\Debug\net7.0-windows\la hacks 2023_MarkupCompile.cache
+C:\Users\bryan\Documents\projects\la hacks 2023\obj\Debug\net7.0-windows\la hacks 2023.g.resources
+C:\Users\bryan\Documents\projects\la hacks 2023\obj\Debug\net7.0-windows\la hacks 2023.dll
+C:\Users\bryan\Documents\projects\la hacks 2023\obj\Debug\net7.0-windows\refint\la hacks 2023.dll
+C:\Users\bryan\Documents\projects\la hacks 2023\obj\Debug\net7.0-windows\la hacks 2023.pdb
+C:\Users\bryan\Documents\projects\la hacks 2023\obj\Debug\net7.0-windows\la hacks 2023.genruntimeconfig.cache
+C:\Users\bryan\Documents\projects\la hacks 2023\obj\Debug\net7.0-windows\ref\la hacks 2023.dll

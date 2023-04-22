@@ -1,0 +1,8 @@
+<Page x:Class="desktopapp.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Settings" Height="350" Width="525">
+    <Grid>
+        <!-- add your UI elements here -->
+    </Grid>
+</Page>
