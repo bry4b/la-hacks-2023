@@ -1,4 +1,4 @@
-import constants as ct
+import utils.constants as ct
 import os
 
 import openai
