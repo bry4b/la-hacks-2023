@@ -27,15 +27,16 @@ def get_user_recording():
         filename = tempfile.mktemp(prefix=filename,
                                         suffix='.wav', dir='')
         # Make sure the file is opened before recording anything:
-        
+        keyboard.wait("space")
         with sf.SoundFile(filename, mode='x', samplerate=samplerate, channels=1) as file:
-            keyboard.wait("space")
             with sd.InputStream(samplerate=samplerate,
                                 channels=1, callback=callback):
                 print('Began recording!')
-                while keyboard.is_pressed("space"):
+                while True:
                     file.write(q.get())
-                print('Done recording!')
+                    if keyboard.is_pressed("space"):
+                        print('Done recording!')
+                        break
 
     except KeyboardInterrupt:
         print('\nRecording finished: ' + repr(filename))

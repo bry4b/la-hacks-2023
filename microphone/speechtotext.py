@@ -1,4 +1,4 @@
-import microphone.constants as constants
+import constants as ct
 import os
 
 import openai
@@ -7,7 +7,7 @@ from flask import Flask, redirect, render_template, request, url_for
 import openai
 import microphone 
 
-openai.api_key = constants.OPENAI_API_KEY
+openai.api_key = ct.OPENAI_API_KEY
 
 filename = microphone.get_user_recording()
 with open(filename, "rb") as audio_file:
