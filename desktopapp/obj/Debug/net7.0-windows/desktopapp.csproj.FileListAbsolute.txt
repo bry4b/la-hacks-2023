@@ -18,3 +18,5 @@ C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\net7.0-wind
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\net7.0-windows\desktopapp.pdb
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\net7.0-windows\desktopapp.genruntimeconfig.cache
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\net7.0-windows\ref\desktopapp.dll
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\net7.0-windows\Settings.baml
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\net7.0-windows\Settings.g.cs

@@ -5,7 +5,7 @@ from PIL import Image
 from stability_sdk import client
 import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
 
-userprompt = "the defenstration of prague as depicted in history textbooks"
+userprompt = "watercolor painted sunrise over ocean with calm waters in the style of bob ross"
 # host url and api key
 os.environ['STABILITY_HOST'] = 'grpc.stability.ai:443'
 os.environ['STABILITY_KEY'] = 'sk-8DGkQXH73fwR98HQRBb6ynLVSAEIP3KwP80uFfz2hpMUso9C'

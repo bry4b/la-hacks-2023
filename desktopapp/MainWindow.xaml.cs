@@ -24,11 +24,10 @@ namespace desktopapp
         {
             InitializeComponent();
         }
-        // private void Button_Click(object sender, RoutedEventArgs e)
-        // {
-        //     Settings settings = new Settings(); // create an instance of the new page
-        //     settings.Show(); // show the new page
-        // }
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Settings settings = new Settings(); // create an instance of the new page
+            // settings.Show(); // show the new page
+        }
     }
 }

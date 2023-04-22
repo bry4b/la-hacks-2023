@@ -1,11 +1,11 @@
 ﻿<Window x:Class="desktopapp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="desktopapp" AllowsTransparency="True" WindowStyle="None" WindowState="Maximized" >
+        Title="desktopapp" AllowsTransparency="True" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized" >
     <Window.Background>
         <SolidColorBrush Opacity="0" Color="White"/>
     </Window.Background>
     <Grid>
-        <Button Content="Settings" />
+        <Button Content="Settings" Width="50" Height="20"/>
     </Grid>
 </Window>
