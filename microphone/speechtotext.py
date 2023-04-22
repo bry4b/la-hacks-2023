@@ -14,9 +14,3 @@ with open(filename, "rb") as audio_file:
     transcript = openai.Audio.transcribe("whisper-1", audio_file)['text']
 print(transcript)
 os.remove(filename)
-
-filename = microphone.get_user_recording()
-with open(filename, "rb") as audio_file:
-    transcript = openai.Audio.transcribe("whisper-1", audio_file)['text']
-print(transcript)
-os.remove(filename)

@@ -41,9 +41,3 @@ def get_user_recording():
         print('\nRecording finished: ' + repr(filename))
         exit(0)
     return file.name
-    
-
-# Remove past sound files
-# import os, glob
-#for f in glob.glob("testsound*"):
-#    os.remove(f)
