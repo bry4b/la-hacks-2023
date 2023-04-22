@@ -6,7 +6,7 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-stringwithtext = "native americans trading crops with the white people"
+
 
 def extract_keywords(prompt):
     # Tokenize the prompt into words
