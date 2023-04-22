@@ -12,7 +12,7 @@ import numpy  # Make sure NumPy is loaded before it is used in the callback
 assert numpy  # avoid "imported but unused" message (W0611)
 
 # Credit @mgeier
-def get_user_recording():
+def get_user_recording(key: str) -> str:
     q = queue.Queue()
     def callback(indata, frames, time, status):
         """This is called (from a separate thread) for each audio block."""
@@ -27,14 +27,14 @@ def get_user_recording():
         filename = tempfile.mktemp(prefix=filename,
                                         suffix='.wav', dir='')
         # Make sure the file is opened before recording anything:
-        keyboard.wait("space")
+        keyboard.wait(key)
         with sf.SoundFile(filename, mode='x', samplerate=samplerate, channels=1) as file:
             with sd.InputStream(samplerate=samplerate,
                                 channels=1, callback=callback):
                 print('Began recording!')
                 while True:
                     file.write(q.get())
-                    if keyboard.is_pressed("space"):
+                    if keyboard.is_pressed(key):
                         print('Done recording!')
                         break
 
