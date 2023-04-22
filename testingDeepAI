@@ -1,0 +1,10 @@
+import requests
+
+url = 'https://api.deepai.org/api/text2img'
+headers = {'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}
+data = {'text': 'A poor suburban house'}
+
+response = requests.post(url, headers=headers, data=data)
+
+# Print the response from the API
+print(response.json())
