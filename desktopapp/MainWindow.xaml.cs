@@ -13,13 +13,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FullScreenOverlay
+namespace desktopapp
 {
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
         }
+        // private void Button_Click(object sender, RoutedEventArgs e)
+        // {
+        //     Settings settings = new Settings(); // create an instance of the new page
+        //     settings.Show(); // show the new page
+        // }
+
     }
 }

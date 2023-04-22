@@ -1,11 +1,11 @@
-﻿<Window x:Class="FullScreenOverlay.MainWindow"
+﻿<Window x:Class="desktopapp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="FullScreenOverlay" AllowsTransparency="True" WindowStyle="None" WindowState="Maximized">
+        Title="desktopapp" AllowsTransparency="True" WindowStyle="None" WindowState="Maximized" >
     <Window.Background>
         <SolidColorBrush Opacity="0" Color="White"/>
     </Window.Background>
     <Grid>
-        <Button Width="200" Height="50">button</Button>
+        <Button Content="Settings" />
     </Grid>
 </Window>
