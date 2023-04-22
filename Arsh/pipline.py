@@ -1,5 +1,5 @@
 import OCRtoText as ott
-import constants as ct
+import utils.constants as ct
 import promptGenerator as pg
 import wordParser as wp
 import testingDalle as td
