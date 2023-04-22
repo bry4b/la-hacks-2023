@@ -1,9 +1,0 @@
-import os
-import openai
-openai.api_key = "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"
-response= openai.Image.create(
-  prompt="realistic photo of a house in a poorer suburban neighorhood in america",
-  n=1,
-  size="1024x1024"
-)
-print(response)
