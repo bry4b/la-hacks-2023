@@ -1,4 +1,4 @@
-import constants
+import microphone.constants as constants
 import os
 
 import openai
@@ -14,4 +14,9 @@ with open(filename, "rb") as audio_file:
     transcript = openai.Audio.transcribe("whisper-1", audio_file)['text']
 print(transcript)
 os.remove(filename)
-# API key: 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
+
+filename = microphone.get_user_recording()
+with open(filename, "rb") as audio_file:
+    transcript = openai.Audio.transcribe("whisper-1", audio_file)['text']
+print(transcript)
+os.remove(filename)
