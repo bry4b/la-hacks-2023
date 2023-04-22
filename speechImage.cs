@@ -19,7 +19,7 @@ class OverlayForm : Form
 
         // Create image box
         imageBox = new PictureBox();
-        imageBox.Image = Image.FromFile(@"C:\path\to\your\image.jpg"); // replace with your image file path
+        imageBox.Image = Image.FromFile(@"~\992446758.png"); // replace with your image file path
         imageBox.SizeMode = PictureBoxSizeMode.Zoom;
         imageBox.Dock = DockStyle.Fill;
         Controls.Add(imageBox);
