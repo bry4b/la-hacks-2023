@@ -1,17 +1,53 @@
-import spacy
-import random
+#import spacy
+import openai
+import os
 import sys
+import utils.constants as ct
 
 # Load the spacy model
-nlp = spacy.load("en_core_web_sm")
+#nlp = spacy.load("en_core_web_sm")
 
-# Define the snippet of text and the list of words
-#snippet1 = "The quick brown fox jumps over the lazy dog. Then the dog gets angry at the fox. The dog then tries to eat the fox, but the fox starts to run away. The fox runs far. A fox won't be able to run far."
-#words2 = ["cat", "jumps", "lazy", "mad", "elephant"]
+# Set up the OpenAI API credentials
+openai.api_key = ct.OPENAI_API_KEY
+#openai.api_key = os.environ[constants.OPENAI_API_KEY]
 
-def promptGenerator(snippet, words):
-    # Create a blank spacy Doc object
-    blank_doc = nlp(" ".join(words))
+def promptGenerator(snippet, words, mood):
+    if mood != None and snippet != None:
+        gpt_request = "There are two texts on a presentation slide. Focus more on the first and less on the second. \"" + \
+        words + ".\" \"" + snippet + ".\" " + "A " + mood + " image is also present on the presentation slide. Write me a 20 to 30 " + \
+        "word descriptive sentence for a caption to the image that describes the subject matter and it's style"
+    elif mood == None and snippet != None:
+        gpt_request = "There are two texts on a presentation slide. Focus more on the first and less on the second. \"" + \
+        words + ".\" \"" + snippet + ".\" " + "A image is also present on the presentation slide. Write me a 20 to 30 " + \
+        "word descriptive sentence for a caption to the image that describes the subject matter and it's style"
+    elif snippet == None and mood != None:
+        gpt_request = "There are two texts on a presentation slide. Focus more on the first and less on the second. \"" + \
+        words + ".\" " + "A " + mood + " image is also present on the presentation slide. Write me a 20 to 30 " + \
+        "word descriptive sentence for a caption to the image that describes the subject matter and it's style"
+    else: 
+        gpt_request = "There are two texts on a presentation slide. Focus more on the first and less on the second. \"" + \
+        words + ".\" \"" + ".\" " + "A image is also present on the presentation slide. Write me a 20 to 30 " + \
+        "word descriptive sentence for a caption to the image that describes the subject matter and it's style"
+    print(gpt_request)
+
+    response = openai.Completion.create(
+        engine="text-davinci-002",
+        prompt=gpt_request,
+        max_tokens=60,
+        n=1,
+        stop=None,
+        temperature=0.7,
+    )
+
+    # Print the response
+    return response.choices[0].text.strip()
+
+
+
+
+
+    '''
+    blank_doc = nlp(words)
 
     if snippet is None:
         return " ".join([token.text for token in blank_doc])
@@ -35,37 +71,5 @@ def promptGenerator(snippet, words):
     # Join the Tokens in the new doc into a sentence
     sentence = " ".join([token.text for token in new_doc])
     return sentence
-
-def promptAlt(snippet, words):
-    doc = nlp(snippet)
-
-    # Find the highest-scoring Token in the original Doc for each Token in the blank Doc
-    substitutions = []
-    for word in words:
-        blank_token = nlp(word)[0]
-        best_token = max(doc, key=lambda x: x.similarity(blank_token))
-        substitutions.append(best_token)
-
-    # Generate a sentence by randomly selecting the substitutions and appending their text
-    sentence = ""
-    num_words = 0
-    while num_words < 10 and substitutions:
-        selected_token = random.choice(substitutions)
-        sentence += " " + selected_token.text
-        num_words += 1
-        substitutions.remove(selected_token)
-
-    # Remove leading/trailing spaces and punctuation from the generated sentence
-    sentence = sentence.strip()
-    sentence = sentence.rstrip(".,;:?!")
-    return sentence
-
 '''
-sentence = promptGenerator(snippet, words)
-max_length = 10
 
-words = sentence.split()[:max_length]
-truncated_sentence = " ".join(words)
-
-print(truncated_sentence)
-'''
