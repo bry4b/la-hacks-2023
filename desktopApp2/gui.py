@@ -5,6 +5,7 @@ from PIL import ImageTk, Image
 import keyboard
 import sys
 import time
+import os
 sys.path.insert(1, ".\src")
 import microphone
 import pipline as pp #heheheha
@@ -12,6 +13,8 @@ import pipline as pp #heheheha
 
 # Create object
 root = tk.Tk()
+print(os.getcwd()+'\\logo.png')
+root.iconphoto(True, tk.PhotoImage(file=os.getcwd()+'\\logo.png'))
 style = ttk.Style(root)
 # root.tk.call('source', 'azure.tcl')
 # style.theme_use('azure')
@@ -80,7 +83,11 @@ def toggle_image_rec():
             message = "We are sorry but your request could not be completed at this time due to the following error: \n" + str(ex)
             errorMessage = tk.Label(root, text=message, font=("Calibri", 14), borderwidth=2, relief="solid", padx=10, pady=10, bg="#192a3a", fg="#ffffff")
             errorMessage.place(relx=0.5, rely=0.45, anchor="center")
-        
+        removeMessage = tk.Label(root, text="Press any key to remove.", font=("Calibri", 10), padx=5, pady=5, bg="#192a3a", fg="#ffffff")
+        removeMessage.place(rely=0.2, anchor="s")
+        input("Press Enter to continue...")
+        imageOut.pack_forget()
+        errorMessage.pack_forget()
 
     else:
         print('Image Recording')
@@ -93,7 +100,7 @@ def toggle_image_rec():
 bulletButton.configure(command=toggle_bullet_rec)
 imageButton.configure(command=toggle_image_rec)
 
-keyboard.add_hotkey('esc', lambda: stop_running())
+keyboard.add_hotkey('ctrl+q', lambda: stop_running())
 keyboard.add_hotkey('b', lambda: toggle_bullet_rec())
 keyboard.add_hotkey('i', lambda: toggle_image_rec())
 
