@@ -1,5 +1,6 @@
 # Import module
 import tkinter as tk
+from tkinter.filedialog import asksaveasfile
 import tkinter.ttk as ttk
 from PIL import ImageTk, Image
 import keyboard
@@ -36,6 +37,9 @@ class GUI:
         self.imageButton = tk.Button(self.root, text="Image Record", font=("Calibri", 12), height=1, width=12, bg="#d1d5db", fg = "#000000")
         self.imageButton.place(relx=.845, rely=.933, anchor=tk.SE)
 
+        self.saveBulletButton = tk.Button(self.root, text="Save Bullet", font=("Calibri", 12), height=1, width=12, bg="#d1d5db", fg = "#000000")
+        self.saveBulletButton.place(relx=1-.928, rely=.933, anchor=tk.SE)
+
         self.exitButton = tk.Button(self.root, text="[X]", font=("Calibri", 10), bg="#d30000", fg = "#ffffff")
         self.exitButton.place(relx=1, rely=0, anchor=tk.NE)
 
@@ -48,6 +52,7 @@ class GUI:
         self.bulletButton.configure(command=self.toggle_bullet_rec)
         self.imageButton.configure(command=self.toggle_image_rec)
         self.exitButton.configure(command=self.stop_running)
+        self.saveBulletButton.configure(command=self.save_bullets)
 
         keyboard.add_hotkey('ctrl+q', lambda: self.stop_running())
         keyboard.add_hotkey('b', lambda: self.toggle_bullet_rec())
@@ -64,6 +69,14 @@ class GUI:
         self.root.destroy()
         self.running = False
         self.app.show()
+    
+    def save_bullets(self):
+        f = asksaveasfile(initialfile = 'Untitled.txt',
+            defaultextension=".txt",filetypes=[("All Files","*.*"),("Text Documents","*.txt")])
+        with open('bullet.txt', 'r') as b:
+            if f is not None:
+                f.write(b.read())
+
 
     def toggle_bullet_rec(self):
         if self.isBulletRecording:
