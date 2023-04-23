@@ -14,10 +14,6 @@ C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\Python.Runtime.dll
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\Python.Runtime.xml
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.csproj.CopyComplete
-C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\IronPython.dll
-C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\IronPython.Modules.dll
-C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\IronPython.SQLite.dll
-C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\IronPython.Wpf.dll
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\Microsoft.Dynamic.dll
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\Microsoft.Scripting.dll
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\Microsoft.Scripting.Metadata.dll
@@ -25,10 +21,6 @@ C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\System.Buff
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\System.Memory.dll
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\IronPython.xml
-C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\IronPython.Modules.xml
-C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\IronPython.SQLite.xml
-C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\IronPython.Wpf.xml
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\Microsoft.Dynamic.xml
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\Microsoft.Scripting.xml
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\Microsoft.Scripting.Metadata.xml
@@ -36,3 +28,4 @@ C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\System.Buff
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\System.Memory.xml
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\Python.Runtime.pdb
