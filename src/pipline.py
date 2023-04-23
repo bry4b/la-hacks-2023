@@ -18,20 +18,21 @@ def imageGeneration (in_prompt):
   return response
 
 #parses text from display screen for context
-def generate_image_from_text(audio_transcript, screen_transcipt, output_file, mood):
-  if screen_transcipt != None:
-    screenText = ott.imagetotext(screen_transcipt)
+def generate_image_from_text(transcript, output_file, screen_transcript=False, mood=None):
+  if screen_transcript:
+    screenText = ott.imagetotext(transcript)
   else:
     screenText = None
 
-  with open(audio_transcript, 'r') as audio:
-    transcript = audio.read()
+  # with open(transcript, 'rb') as audio:
+  #   transcript_read = audio.read()
+  transcript_read = sp.get_transcript(transcript, 'transcript.txt')
 
   #looks for keywords in the audio signal
   #keywords = wp.extract_keywords_plain(transcript)
 
   #creates the prompt using the keywords from the audio and the context from the display screen
-  sentence = pg.promptGenerator(screenText, transcript, mood)
+  sentence = pg.promptGenerator(screenText, transcript_read, mood)
 
   response = imageGeneration(sentence)
   url = response['data'][0]['url']
@@ -56,4 +57,4 @@ if __name__ == '__main__':
 
   sp.get_transcript('out.wav', 'audio.txt')
 
-  generate_image_from_text('audio.txt', None, 'image.png', None)
+  generate_image_from_text('audio.txt', 'image.png')
