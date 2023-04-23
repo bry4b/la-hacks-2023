@@ -18,7 +18,7 @@ def imageGeneration (in_prompt):
   return response
 
 #parses text from display screen for context
-def generate_image_from_text(audio_transcript, screen_transcipt, output_file):
+def generate_image_from_text(audio_transcript, screen_transcipt, output_file, mood):
   if screen_transcipt != None:
     screenText = ott.imagetotext(screen_transcipt)
   else:
@@ -28,16 +28,12 @@ def generate_image_from_text(audio_transcript, screen_transcipt, output_file):
     transcript = audio.read()
 
   #looks for keywords in the audio signal
-  keywords = wp.extract_keywords_plain(transcript)
+  #keywords = wp.extract_keywords_plain(transcript)
 
   #creates the prompt using the keywords from the audio and the context from the display screen
-  sentence = pg.promptGenerator(screenText, keywords)
+  sentence = pg.promptGenerator(screenText, transcript, mood)
 
-  max_length = 10
-  words = sentence.split()[:max_length]
-  truncated_sentence = " ".join(words)
-
-  response = imageGeneration(truncated_sentence)
+  response = imageGeneration(sentence)
   url = response['data'][0]['url']
 
   # Send a GET request to the URL and get the content of the response
@@ -50,14 +46,14 @@ import microphone as mc
 import speechtotext as sp
 
 if __name__ == '__main__':
-  # recorder = mc.Recorder()
+  recorder = mc.Recorder()
 
-  # print('Recording!')
-  # recorder.start_recording()
-  # time.sleep(5)
-  # print('Stopped recording!')
-  # recorder.stop_recording('out.wav')
+  print('Recording!')
+  recorder.start_recording()
+  time.sleep(5)
+  print('Stopped recording!')
+  recorder.stop_recording('out.wav')
 
-  # sp.get_transcript('out.wav', 'audio.txt')
+  sp.get_transcript('out.wav', 'audio.txt')
 
-  generate_image_from_text('audio.txt', None, 'image.png')
+  generate_image_from_text('audio.txt', None, 'image.png', "Happy")

@@ -1,0 +1,45 @@
+import openai_secret_manager
+import openai
+import utils.constants as ct
+
+
+#assert "openai" in openai_secret_manager.get_services()
+#secrets = openai_secret_manager.get_secret("openai")
+
+openai.api_key = ct.OPENAI_API_KEY#secrets[ct.OPENAI_API_KEY]
+
+with open("cow.txt", "r") as file:
+    text = file.read()
+
+def split_text(text):
+    max_chunk_size = 2048
+    chunks = []
+    current_chunk = ""
+    print(type(text))
+    for sentence in text.split("."):
+        if len(current_chunk) + len(sentence) < max_chunk_size:
+            current_chunk += sentence + "."
+        else:
+            chunks.append(current_chunk.strip())
+            current_chunk = sentence + "."
+    if current_chunk:
+        chunks.append(current_chunk.strip())
+    return chunks
+
+def generate_summary(text):
+
+    response = openai.Completion.create(
+        engine="davinci",
+        prompt=(f"Please make the following text into bullet points:\n{text}\n\Bullet Points:"),
+        temperature=0.5,
+        max_tokens=1024,
+        n = 1,
+        stop=None
+    )
+    return response
+    
+
+answer = generate_summary(text)
+print(answer)
+
+
