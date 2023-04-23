@@ -14,7 +14,7 @@ class App:
         self.root.title("My App")
 
         self.gui = None
-        
+
         # Set the theme
         self.root.iconphoto(True, tk.PhotoImage(file=os.getcwd()+'\\logo.png'))
         self.style = ThemedStyle(self.root)

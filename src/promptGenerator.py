@@ -28,7 +28,6 @@ def promptGenerator(snippet, words, mood):
         gpt_request = "There are two texts on a presentation slide. Focus more on the first and less on the second. \"" + \
         words + ".\" \"" + ".\" " + "A image is also present on the presentation slide. Write me a 20 to 30 " + \
         "word descriptive sentence for a caption to the image that describes the subject matter and it's style"
-    print(gpt_request)
 
     response = openai.Completion.create(
         engine="text-davinci-002",

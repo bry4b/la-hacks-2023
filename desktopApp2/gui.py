@@ -15,7 +15,7 @@ import summarizetext as st
 class GUI:
     def __init__(self, app):
         # Create object
-        self.root = tk.Tk()
+        self.root = tk.Toplevel()
         style = ttk.Style(self.root)
         self.root.config(bg = '#add123')
 
@@ -98,7 +98,7 @@ class GUI:
                 imageOut.photo = img
                 imageOut.place(relx=0.5, rely=0.45, anchor="center")
                 def delete_image_popups():
-                    self.imageOut.destroy()
+                    imageOut.destroy()
                     removeMessage.destroy()
             except Exception as ex:
                 message = "We are sorry but your request could not be completed at this time due to the following error: \n" + str(ex)
@@ -107,7 +107,7 @@ class GUI:
                 def delete_image_popups():
                     errorMessage.destroy()
                     removeMessage.destroy()
-            removeMessage = tk.Label(self.root, text="Press any key to remove.", font=("Calibri", 10), padx=5, pady=5, bg="#192a3a", fg="#ffffff")
+            removeMessage = tk.Label(self.root, text="Press enter to remove.", font=("Calibri", 10), padx=5, pady=5, bg="#192a3a", fg="#ffffff")
             removeMessage.place(relx=0.5, rely=0.9, anchor="center")
             keyboard.add_hotkey('enter', lambda: delete_image_popups())
         elif not self.isBulletRecording:
