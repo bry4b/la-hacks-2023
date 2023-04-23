@@ -26,8 +26,9 @@ namespace desktopapp
             kbhook.Start();
 
             InitializeComponent();
-/*            PythonEngine.Initialize();
-*/            this.TopMost = true;
+            PythonEngine.PythonHome = @"F:\anaconda3";
+            PythonEngine.Initialize();
+            this.TopMost = true;
 
             kbhook.RegisterHotkey(0x18, () =>
             {
