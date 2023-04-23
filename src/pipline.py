@@ -46,14 +46,14 @@ import microphone as mc
 import speechtotext as sp
 
 if __name__ == '__main__':
-  recorder = mc.Recorder()
+  # recorder = mc.Recorder()
 
-  print('Recording!')
-  recorder.start_recording()
-  time.sleep(5)
-  print('Stopped recording!')
-  recorder.stop_recording('out.wav')
+  # print('Recording!')
+  # recorder.start_recording()
+  # time.sleep(5)
+  # print('Stopped recording!')
+  # recorder.stop_recording('out.wav')
 
-  sp.get_transcript('out.wav', 'audio.txt')
+  # sp.get_transcript('out.wav', 'audio.txt')
 
-  generate_image_from_text('audio.txt', None, 'image.png', "Happy")
+  generate_image_from_text('audio.txt', None, 'image.png')
