@@ -9,6 +9,8 @@ import os
 sys.path.insert(1, ".\src")
 import microphone
 import pipline as pp #heheheha
+import speechtotext as sp
+import summarizetext as st
         
 class GUI:
     def __init__(self, app):
@@ -63,10 +65,18 @@ class GUI:
         if self.isBulletRecording:
             print('Bullet Recording Stopped')
             self.bulletRecord.stop_recording('bulletOutput.wav')
+
+            transcript = sp.get_transcript('bulletOutput.wav', bullet=True)
+            transcript = st.generate_bullet_point(transcript)
+
+            with open('bullet.txt', 'a') as f:
+                f.write(transcript)
+                f.write('\n')
+
             self.bulletRecord = microphone.Recorder()
             self.isBulletRecording = False
             self.bulletButton.configure(bg="#d1d5db")
-        else:
+        elif not self.isImageRecording:
             print('Bullet Recording')
             self.bulletRecord.start_recording()
             self.isBulletRecording = True
@@ -100,7 +110,7 @@ class GUI:
             removeMessage = tk.Label(self.root, text="Press any key to remove.", font=("Calibri", 10), padx=5, pady=5, bg="#192a3a", fg="#ffffff")
             removeMessage.place(relx=0.5, rely=0.9, anchor="center")
             keyboard.add_hotkey('enter', lambda: delete_image_popups())
-        else:
+        elif not self.isBulletRecording:
             print('Image Recording')
 
             self.imageRecord = microphone.Recorder()

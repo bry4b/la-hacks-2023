@@ -41,20 +41,3 @@ def generate_image_from_text(transcript, output_file, screen_transcript=False, m
   response = requests.get(url)
   with open(output_file, "wb") as f:
       f.write(response.content)
-
-import time
-import microphone as mc
-import speechtotext as sp
-
-if __name__ == '__main__':
-  recorder = mc.Recorder()
-
-  print('Recording!')
-  recorder.start_recording()
-  time.sleep(5)
-  print('Stopped recording!')
-  recorder.stop_recording('out.wav')
-
-  sp.get_transcript('out.wav', 'audio.txt')
-
-  generate_image_from_text('audio.txt', 'image.png')
