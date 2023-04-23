@@ -11,3 +11,6 @@ C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.exe
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.pdb
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.RunWindow.resources
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\Python.Runtime.dll
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\Python.Runtime.xml
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.csproj.CopyComplete
