@@ -13,7 +13,6 @@ import pipline as pp #heheheha
 
 # Create object
 root = tk.Tk()
-print(os.getcwd()+'\\logo.png')
 root.iconphoto(True, tk.PhotoImage(file=os.getcwd()+'\\logo.png'))
 style = ttk.Style(root)
 # root.tk.call('source', 'azure.tcl')
@@ -36,6 +35,8 @@ bulletButton = tk.Button(root, text="Bullet Record", font=("Calibri", 12), heigh
 bulletButton.place(relx=.928, rely=.933, anchor=tk.SE)
 imageButton = tk.Button(root, text="Image Record", font=("Calibri", 12), height=1, width=12, bg="#d1d5db", fg = "#000000")
 imageButton.place(relx=.845, rely=.933, anchor=tk.SE)
+exitButton = tk.Button(root, text="[X]", font=("Calibri", 10), bg="#d30000", fg = "#ffffff")
+exitButton.place(relx=1, rely=0, anchor=tk.NE)
 
 running = True
 bulletRecord = microphone.Recorder()
@@ -66,44 +67,48 @@ def toggle_bullet_rec():
 def toggle_image_rec():
     global isImageRecording
     global imageRecord
-    global imageOut
     if isImageRecording:
         print('Image Recording Stopped')
         imageRecord.stop_recording('imageOutput.wav')
         imageRecord = microphone.Recorder()
         isImageRecording = False
         imageButton.configure(bg="#d1d5db")
+        removeMessage = tk.Label(root, text="Press enter to remove.", font=("Calibri", 12), borderwidth=1, relief="solid", bg="#192a3a", fg="#ffffff")
         try:
             pp.generate_image_from_text('imageOutput.wav', 'imageOutput.png')         
             img = ImageTk.PhotoImage(Image.open("imageOutput.png").resize((600,600)))
             imageOut = tk.Label(root, image=img)
             imageOut.photo = img
             imageOut.place(relx=0.5, rely=0.45, anchor="center")
+            def delete_image_popups():
+                imageOut.destroy()
+                removeMessage.destroy()
         except Exception as ex:
             message = "We are sorry but your request could not be completed at this time due to the following error: \n" + str(ex)
             errorMessage = tk.Label(root, text=message, font=("Calibri", 14), borderwidth=2, relief="solid", padx=10, pady=10, bg="#192a3a", fg="#ffffff")
             errorMessage.place(relx=0.5, rely=0.45, anchor="center")
-        removeMessage = tk.Label(root, text="Press any key to remove.", font=("Calibri", 10), padx=5, pady=5, bg="#192a3a", fg="#ffffff")
-        removeMessage.place(rely=0.2, anchor="s")
-        input("Press Enter to continue...")
-        imageOut.pack_forget()
-        errorMessage.pack_forget()
+            def delete_image_popups():
+                errorMessage.destroy()
+                removeMessage.destroy()
+        removeMessage.place(relx=0.5, rely=0.9, anchor="center")
+        keyboard.add_hotkey('enter', lambda: delete_image_popups())
 
     else:
         print('Image Recording')
         imageRecord.start_recording()
         isImageRecording = True
         imageButton.configure(bg="#ff3200")
-        
-        
+
+def exit_GUI():
+    root.destroy()
 
 bulletButton.configure(command=toggle_bullet_rec)
 imageButton.configure(command=toggle_image_rec)
+exitButton.configure(command=exit_GUI)
 
 keyboard.add_hotkey('ctrl+q', lambda: stop_running())
 keyboard.add_hotkey('b', lambda: toggle_bullet_rec())
 keyboard.add_hotkey('i', lambda: toggle_image_rec())
-
 
 # Execute tkinter
 root.mainloop()
