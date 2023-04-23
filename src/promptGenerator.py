@@ -1,18 +1,22 @@
 import spacy
 import random
+import sys
 
 # Load the spacy model
-nlp = spacy.load("en_core_web_md")
+nlp = spacy.load("en_core_web_sm")
 
 # Define the snippet of text and the list of words
 #snippet1 = "The quick brown fox jumps over the lazy dog. Then the dog gets angry at the fox. The dog then tries to eat the fox, but the fox starts to run away. The fox runs far. A fox won't be able to run far."
 #words2 = ["cat", "jumps", "lazy", "mad", "elephant"]
 
 def promptGenerator(snippet, words):
-    doc = nlp(snippet)
-
     # Create a blank spacy Doc object
     blank_doc = nlp(" ".join(words))
+
+    if snippet is None:
+        return " ".join([token.text for token in blank_doc])
+    
+    doc = nlp(snippet)
 
     # Find the highest-scoring Token in the original Doc for each Token in the blank Doc
     substitutions = []

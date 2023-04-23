@@ -1,44 +1,55 @@
-import argparse
-import tempfile
+import threading
 import queue
-import sys
-import os
-import glob
+import pyaudio
+import wave
 
-import keyboard
-import sounddevice as sd
-import soundfile as sf
-import numpy  # Make sure NumPy is loaded before it is used in the callback
-assert numpy  # avoid "imported but unused" message (W0611)
+class Recorder:
+    def __init__(self):
+        self.chunk = 1024  # Record in chunks of 1024 samples
+        self.sample_format = pyaudio.paInt16  # 16 bits per sample
+        self.channels = 2
+        self.fs = 44100  # Record at 44100 samples per second
+        self.frames = []  # Initialize an empty list to store audio frames
+        self.recording = False
+        self.q = queue.Queue()
+        self.thread = threading.Thread(target=self.record_audio, daemon=True)
 
-# Credit @mgeier
-def get_user_recording(key: str) -> str:
-    q = queue.Queue()
-    def callback(indata, frames, time, status):
-        """This is called (from a separate thread) for each audio block."""
-        if status:
-            print(status, file=sys.stderr)
-        q.put(indata.copy())
-    try:
-        filename = 'testsound'
-        device_info = sd.query_devices(None,'input')
-        # soundfile expects an int, sounddevice provides a float:
-        samplerate = int(device_info['default_samplerate'])
-        filename = tempfile.mktemp(prefix=filename,
-                                        suffix='.wav', dir='')
-        # Make sure the file is opened before recording anything:
-        keyboard.wait(key)
-        with sf.SoundFile(filename, mode='x', samplerate=samplerate, channels=1) as file:
-            with sd.InputStream(samplerate=samplerate,
-                                channels=1, callback=callback):
-                print('Began recording!')
-                while True:
-                    file.write(q.get())
-                    if keyboard.is_pressed(key):
-                        print('Done recording!')
-                        break
+    def start_recording(self):
+        self.recording = True
+        self.thread.start()
 
-    except KeyboardInterrupt:
-        print('\nRecording finished: ' + repr(filename))
-        exit(0)
-    return file.name
+    def stop_recording(self, output_file):
+        self.recording = False
+        self.thread.join()
+        self.save_audio(output_file)
+
+    def record_audio(self):
+        p = pyaudio.PyAudio()  # Create an interface to the default audio device
+
+        stream = p.open(format=self.sample_format,
+                        channels=self.channels,
+                        rate=self.fs,
+                        frames_per_buffer=self.chunk,
+                        input=True)
+
+        while self.recording:
+            data = stream.read(self.chunk)
+            self.q.put(data)
+
+        stream.stop_stream()
+        stream.close()
+        p.terminate()
+
+    def save_audio(self, output_file):
+        p = pyaudio.PyAudio()
+        wf = wave.open(output_file, 'wb')
+        wf.setnchannels(self.channels)
+        wf.setsampwidth(p.get_sample_size(self.sample_format))
+        wf.setframerate(self.fs)
+        while not self.q.empty():
+            data = self.q.get()
+            self.frames.append(data)
+        wf.writeframes(b''.join(self.frames))
+        wf.close()
+        p.terminate()
+        

@@ -1,6 +1,10 @@
 import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
+try:
+    nltk.data.find('tokenizers/punkt')
+    nltk.data.find('tokenizers/stopwords')
+except LookupError:
+    nltk.download('punkt')
+    nltk.download('stopwords')
 #import OCRtoText as ott
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
