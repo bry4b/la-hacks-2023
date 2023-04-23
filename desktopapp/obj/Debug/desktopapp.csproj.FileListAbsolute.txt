@@ -1,0 +1,16 @@
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\desktopapp.exe.config
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\desktopapp.exe
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\desktopapp.pdb
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.csproj.AssemblyReference.cache
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.csproj.SuggestedBindingRedirects.cache
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.Form1.resources
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.Properties.Resources.resources
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.Settings.resources
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.csproj.GenerateResource.cache
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.csproj.CoreCompileInputs.cache
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.exe
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.pdb
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.RunWindow.resources
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\Python.Runtime.dll
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\Python.Runtime.xml
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\obj\Debug\desktopapp.csproj.CopyComplete
