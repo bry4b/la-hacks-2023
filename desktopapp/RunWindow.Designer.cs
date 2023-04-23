@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace desktopapp
 {
@@ -60,6 +61,7 @@ namespace desktopapp
             this.BackColor = Color.Black;
             this.TransparencyKey = Color.Black;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.TopMost = true;
             this.Controls.Add(label);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "RunWindow";
