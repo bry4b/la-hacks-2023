@@ -19,6 +19,8 @@ class GUI:
         style = ttk.Style(self.root)
         self.root.config(bg = '#add123')
 
+        self.mood = None
+
         #Create a transparent window
         self.root.wm_attributes('-transparentcolor','#add123')
 
@@ -55,7 +57,9 @@ class GUI:
         
         # Execute tkinter
         self.root.mainloop()
-    
+    def set_mood(self, mood):
+        self.mood = mood
+
     def stop_running(self):
         self.root.destroy()
         self.running = False
@@ -90,9 +94,11 @@ class GUI:
             self.imageRecord = microphone.Recorder()
             self.isImageRecording = False
             self.imageButton.configure(bg="#d1d5db")
+            if self.mood is not None:
+                print('MOOD: ' + self.mood)
             removeMessage = tk.Label(self.root, text="Press enter to remove.", font=("Calibri", 12), borderwidth=1, relief="solid", bg="#192a3a", fg="#ffffff")
             try:
-                pp.generate_image_from_text('imageOutput.wav', 'imageOutput.png')         
+                pp.generate_image_from_text('imageOutput.wav', 'imageOutput.png', mood=self.mood)         
                 img = ImageTk.PhotoImage(Image.open("imageOutput.png").resize((600,600)))
                 imageOut = tk.Label(self.root, image=img)
                 imageOut.photo = img
