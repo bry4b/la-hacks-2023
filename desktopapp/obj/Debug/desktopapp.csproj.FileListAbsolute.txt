@@ -29,3 +29,4 @@ C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\System.Memo
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\Python.Runtime.pdb
+C:\Users\bryan\Documents\projects\la hacks 2023\desktopapp\bin\Debug\NonInvasiveKeyboardHookLibrary.dll
