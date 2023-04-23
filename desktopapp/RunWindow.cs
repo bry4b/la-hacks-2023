@@ -17,9 +17,10 @@ namespace desktopapp
     {
         public RunWindow()
         {
+            InitializeComponent();
+            PythonEngine.Initialize();
             this.TopMost = true;
 
-            InitializeComponent();
             Hook kh = new Hook(true);
             kh.KeyDown += Kh_KeyDown;
         }
@@ -27,10 +28,36 @@ namespace desktopapp
         private void Kh_KeyDown(Keys key, bool Shift, bool Ctrl, bool Alt)
         {
             if (key == Keys.Escape)
+            {
                 this.Close();
+                PythonEngine.Shutdown();
+            }
+            if (key == Keys.B)
+                this.Record();
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+        }
+        private bool isRecording = false;
+        private void Record()
+        {
+            using (Py.GIL())
+            {
+                dynamic module = Py.Import("../src/microphone.py");
+                dynamic recorder = module.Recorder();
+                if (!isRecording)
+                {
+                    MessageBox.Show("started recording");
+                    isRecording = true;
+                    recorder.start_recording();
+                }
+                else
+                {
+                    MessageBox.Show("stopped recording");
+                    isRecording = false;
+                    recorder.stop_recording("audio.wav");
+                }
+            }
         }
     }
 
