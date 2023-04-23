@@ -16,11 +16,11 @@ def promptGenerator(snippet, words, mood):
         gpt_request = "There are two texts on a presentation slide. Focus more on the first and less on the second. \"" + \
         words + ".\" \"" + snippet + ".\" " + "A " + mood + " image is also present on the presentation slide. Write me a 20 to 30 " + \
         "word descriptive sentence for a caption to the image that describes the subject matter and it's style"
-    elif mood == None:
+    elif mood == None and snippet != None:
         gpt_request = "There are two texts on a presentation slide. Focus more on the first and less on the second. \"" + \
         words + ".\" \"" + snippet + ".\" " + "A image is also present on the presentation slide. Write me a 20 to 30 " + \
         "word descriptive sentence for a caption to the image that describes the subject matter and it's style"
-    elif snippet == None:
+    elif snippet == None and mood != None:
         gpt_request = "There are two texts on a presentation slide. Focus more on the first and less on the second. \"" + \
         words + ".\" " + "A " + mood + " image is also present on the presentation slide. Write me a 20 to 30 " + \
         "word descriptive sentence for a caption to the image that describes the subject matter and it's style"
