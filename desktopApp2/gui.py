@@ -9,106 +9,101 @@ import os
 sys.path.insert(1, ".\src")
 import microphone
 import pipline as pp #heheheha
+        
+class GUI:
+    def __init__(self, app):
+        # Create object
+        self.root = tk.Tk()
+        style = ttk.Style(self.root)
+        self.root.config(bg = '#add123')
+
+        #Create a transparent window
+        self.root.wm_attributes('-transparentcolor','#add123')
+
+        # Create label with opaque text
+        self.label = tk.Label(self.root, text="VIEW", font=("Arial Bold", 18), height=1, width=6, bg="#192a3a", fg="#ffffff")
+        self.label.place(relx=1, rely=0.9328, anchor=tk.SE)
+        # Adjust size
+        self.root.attributes('-fullscreen',True)
+        self.root.attributes('-topmost',True)
+
+        self.bulletButton = tk.Button(self.root, text="Bullet Record", font=("Calibri", 12), height=1, width=12, bg="#d1d5db", fg = "#000000")
+        self.bulletButton.place(relx=.928, rely=.933, anchor=tk.SE)
+        self.imageButton = tk.Button(self.root, text="Image Record", font=("Calibri", 12), height=1, width=12, bg="#d1d5db", fg = "#000000")
+        self.imageButton.place(relx=.845, rely=.933, anchor=tk.SE)
+
+        self.exitButton = tk.Button(self.root, text="[X]", font=("Calibri", 10), bg="#d30000", fg = "#ffffff")
+        self.exitButton.place(relx=1, rely=0, anchor=tk.NE)
+
+        self.running = True
+        self.bulletRecord = microphone.Recorder()
+        self.imageRecord = microphone.Recorder()
+        self.isBulletRecording = False
+        self.isImageRecording = False
+
+        self.bulletButton.configure(command=self.toggle_bullet_rec)
+        self.imageButton.configure(command=self.toggle_image_rec)
+        self.exitButton.configure(command=self.stop_running)
+
+        keyboard.add_hotkey('ctrl+q', lambda: self.stop_running())
+        keyboard.add_hotkey('b', lambda: self.toggle_bullet_rec())
+        keyboard.add_hotkey('i', lambda: self.toggle_image_rec())
+
+        self.app = app
+        
+        # Execute tkinter
+        self.root.mainloop()
+    
+    def stop_running(self):
+        self.root.destroy()
+        self.running = False
+        self.app.show()
+
+    def toggle_bullet_rec(self):
+        if self.isBulletRecording:
+            print('Bullet Recording Stopped')
+            self.bulletRecord.stop_recording('bulletOutput.wav')
+            self.bulletRecord = microphone.Recorder()
+            self.isBulletRecording = False
+            self.bulletButton.configure(bg="#d1d5db")
+        else:
+            print('Bullet Recording')
+            self.bulletRecord.start_recording()
+            self.isBulletRecording = True
+            self.bulletButton.configure(bg="#ff3200")
 
 
-# Create object
-root = tk.Tk()
-root.iconphoto(True, tk.PhotoImage(file=os.getcwd()+'\\logo.png'))
-style = ttk.Style(root)
-# root.tk.call('source', 'azure.tcl')
-# style.theme_use('azure')
- # Create transparent window
-#root.attributes("-alpha", 0.0)
-root.config(bg = '#add123')
+    def toggle_image_rec(self):
+        if self.isImageRecording:
+            print('Image Recording Stopped')
+            self.imageRecord.stop_recording('imageOutput.wav')
+            self.imageRecord = microphone.Recorder()
+            self.isImageRecording = False
+            self.imageButton.configure(bg="#d1d5db")
+            removeMessage = tk.Label(self.root, text="Press enter to remove.", font=("Calibri", 12), borderwidth=1, relief="solid", bg="#192a3a", fg="#ffffff")
+            try:
+                pp.generate_image_from_text('imageOutput.wav', 'imageOutput.png')         
+                img = ImageTk.PhotoImage(Image.open("imageOutput.png").resize((600,600)))
+                imageOut = tk.Label(self.root, image=img)
+                imageOut.photo = img
+                imageOut.place(relx=0.5, rely=0.45, anchor="center")
+                def delete_image_popups():
+                    self.imageOut.destroy()
+                    removeMessage.destroy()
+            except Exception as ex:
+                message = "We are sorry but your request could not be completed at this time due to the following error: \n" + str(ex)
+                errorMessage = tk.Label(self.root, text=message, font=("Calibri", 14), borderwidth=2, relief="solid", padx=10, pady=10, bg="#192a3a", fg="#ffffff")
+                errorMessage.place(relx=0.5, rely=0.45, anchor="center")
+                def delete_image_popups():
+                    errorMessage.destroy()
+                    removeMessage.destroy()
+            removeMessage = tk.Label(self.root, text="Press any key to remove.", font=("Calibri", 10), padx=5, pady=5, bg="#192a3a", fg="#ffffff")
+            removeMessage.place(relx=0.5, rely=0.9, anchor="center")
+            keyboard.add_hotkey('enter', lambda: delete_image_popups())
+        else:
+            print('Image Recording')
 
-#Create a transparent window
-root.wm_attributes('-transparentcolor','#add123')
-
-# Create label with opaque text
-label = tk.Label(root, text="VIEW", font=("Arial Bold", 18), height=1, width=6, bg="#192a3a", fg="#ffffff")
-label.place(relx=1, rely=0.9328, anchor=tk.SE)
-# Adjust size
-root.attributes('-fullscreen',True)
-root.attributes('-topmost',True)
-
-bulletButton = tk.Button(root, text="Bullet Record", font=("Calibri", 12), height=1, width=12, bg="#d1d5db", fg = "#000000")
-bulletButton.place(relx=.928, rely=.933, anchor=tk.SE)
-imageButton = tk.Button(root, text="Image Record", font=("Calibri", 12), height=1, width=12, bg="#d1d5db", fg = "#000000")
-imageButton.place(relx=.845, rely=.933, anchor=tk.SE)
-exitButton = tk.Button(root, text="[X]", font=("Calibri", 10), bg="#d30000", fg = "#ffffff")
-exitButton.place(relx=1, rely=0, anchor=tk.NE)
-
-running = True
-bulletRecord = microphone.Recorder()
-imageRecord = microphone.Recorder()
-isBulletRecording = False
-isImageRecording = False
-
-def stop_running():
-    root.destroy()
-    running = False
-
-def toggle_bullet_rec():
-    global isBulletRecording
-    global bulletRecord
-    if isBulletRecording:
-        print('Bullet Recording Stopped')
-        bulletRecord.stop_recording('bulletOutput.wav')
-        bulletRecord = microphone.Recorder()
-        isBulletRecording = False
-        bulletButton.configure(bg="#d1d5db")
-    else:
-        print('Bullet Recording')
-        bulletRecord.start_recording()
-        isBulletRecording = True
-        bulletButton.configure(bg="#ff3200")
-
-
-def toggle_image_rec():
-    global isImageRecording
-    global imageRecord
-    if isImageRecording:
-        print('Image Recording Stopped')
-        imageRecord.stop_recording('imageOutput.wav')
-        imageRecord = microphone.Recorder()
-        isImageRecording = False
-        imageButton.configure(bg="#d1d5db")
-        removeMessage = tk.Label(root, text="Press enter to remove.", font=("Calibri", 12), borderwidth=1, relief="solid", bg="#192a3a", fg="#ffffff")
-        try:
-            pp.generate_image_from_text('imageOutput.wav', 'imageOutput.png')         
-            img = ImageTk.PhotoImage(Image.open("imageOutput.png").resize((600,600)))
-            imageOut = tk.Label(root, image=img)
-            imageOut.photo = img
-            imageOut.place(relx=0.5, rely=0.45, anchor="center")
-            def delete_image_popups():
-                imageOut.destroy()
-                removeMessage.destroy()
-        except Exception as ex:
-            message = "We are sorry but your request could not be completed at this time due to the following error: \n" + str(ex)
-            errorMessage = tk.Label(root, text=message, font=("Calibri", 14), borderwidth=2, relief="solid", padx=10, pady=10, bg="#192a3a", fg="#ffffff")
-            errorMessage.place(relx=0.5, rely=0.45, anchor="center")
-            def delete_image_popups():
-                errorMessage.destroy()
-                removeMessage.destroy()
-        removeMessage.place(relx=0.5, rely=0.9, anchor="center")
-        keyboard.add_hotkey('enter', lambda: delete_image_popups())
-
-    else:
-        print('Image Recording')
-        imageRecord.start_recording()
-        isImageRecording = True
-        imageButton.configure(bg="#ff3200")
-
-def exit_GUI():
-    root.destroy()
-
-bulletButton.configure(command=toggle_bullet_rec)
-imageButton.configure(command=toggle_image_rec)
-exitButton.configure(command=exit_GUI)
-
-keyboard.add_hotkey('ctrl+q', lambda: stop_running())
-keyboard.add_hotkey('b', lambda: toggle_bullet_rec())
-keyboard.add_hotkey('i', lambda: toggle_image_rec())
-
-# Execute tkinter
-root.mainloop()
+            self.imageRecord = microphone.Recorder()
+            self.imageRecord.start_recording()
+            self.isImageRecording = True
+            self.imageButton.configure(bg="#ff3200")
